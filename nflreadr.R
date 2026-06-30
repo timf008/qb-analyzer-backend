@@ -1,3 +1,13 @@
+# ============================================================
+# CORS HEADERS (must be FIRST output)
+# ============================================================
+cat("Content-Type: application/json\n")
+cat("Access-Control-Allow-Origin: *\n")
+cat("Access-Control-Allow-Headers: *\n")
+cat("Access-Control-Allow-Methods: GET, POST, OPTIONS\n")
+cat("\n")  # REQUIRED blank line after headers
+
+
 args <- commandArgs(trailingOnly = TRUE)
 
 library(nflreadr)
@@ -5,12 +15,6 @@ library(dplyr)
 library(jsonlite)
 library(stringr)
 
-# ============================================================
-# CORS HEADERS (required for GitHub Pages → Render)
-# ============================================================
-cat("Access-Control-Allow-Origin: *\n")
-cat("Access-Control-Allow-Headers: *\n")
-cat("Access-Control-Allow-Methods: GET, POST, OPTIONS\n")
 
 # ============================================================
 # GLOBAL SAFETY OPTIONS
