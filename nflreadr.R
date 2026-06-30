@@ -6,10 +6,18 @@ library(jsonlite)
 library(stringr)
 
 # ============================================================
+# CORS HEADERS (required for GitHub Pages → Render)
+# ============================================================
+cat("Access-Control-Allow-Origin: *\n")
+cat("Access-Control-Allow-Headers: *\n")
+cat("Access-Control-Allow-Methods: GET, POST, OPTIONS\n")
+
+# ============================================================
 # GLOBAL SAFETY OPTIONS
 # ============================================================
 options(warn = -1)      # suppress warnings
 options(timeout = 600)  # allow long downloads
+
 
 
 # ============================================================
