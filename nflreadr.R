@@ -23,7 +23,6 @@ options(warn = -1)      # suppress warnings
 options(timeout = 600)  # allow long downloads
 
 
-
 # ============================================================
 # FILE-BASED PBP CACHE
 # ============================================================
@@ -35,11 +34,11 @@ load_pbp_cached <- function(season) {
   f <- cache_file(season)
 
   if (file.exists(f)) {
-    message("Using cached PBP for season ", season)
+    # message("Using cached PBP for season ", season)   # DISABLED
     return(readRDS(f))
   }
 
-  message("Loading PBP fresh for season ", season)
+  # message("Loading PBP fresh for season ", season)    # DISABLED
   pbp <- nflreadr::load_pbp(season)
   saveRDS(pbp, f)
   return(pbp)
@@ -173,7 +172,7 @@ if (is.na(epa) || is.nan(epa)) epa <- 0
 
 comp_pct <- ifelse(attempts > 0, completions / attempts * 100, 0)
 td_pct   <- ifelse(attempts > 0, td / attempts * 100, 0)
-int_pct  <- ifelse(attempts > 0, ints / attempts * 100, 0)
+int_pct  <- ifelse(attemptempts > 0, ints / attempts * 100, 0)
 sack_pct <- ifelse(attempts + sacks > 0, sacks / (attempts + sacks) * 100, 0)
 
 # SAFE SCORING
@@ -235,5 +234,3 @@ result <- list(
 cat(toJSON(result, auto_unbox = TRUE))
 flush.console()
 quit(save = "no", status = 0, runLast = FALSE)
-
-
