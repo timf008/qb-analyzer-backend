@@ -1,5 +1,11 @@
 # ============================================================
-# CORS HEADERS (must be FIRST output)
+# GLOBAL SILENCERS (must be VERY first)
+# ============================================================
+sink("/dev/null")      # silence all non-JSON output
+options(warn = -1)     # suppress warnings
+
+# ============================================================
+# CORS HEADERS (ignored by Node, but harmless)
 # ============================================================
 cat("Content-Type: application/json\n")
 cat("Access-Control-Allow-Origin: *\n")
@@ -19,7 +25,6 @@ library(stringr)
 # ============================================================
 # GLOBAL SAFETY OPTIONS
 # ============================================================
-options(warn = -1)      # suppress warnings
 options(timeout = 600)  # allow long downloads
 
 
@@ -34,11 +39,9 @@ load_pbp_cached <- function(season) {
   f <- cache_file(season)
 
   if (file.exists(f)) {
-    # message("Using cached PBP for season ", season)   # DISABLED
     return(readRDS(f))
   }
 
-  # message("Loading PBP fresh for season ", season)    # DISABLED
   pbp <- nflreadr::load_pbp(season)
   saveRDS(pbp, f)
   return(pbp)
@@ -234,3 +237,4 @@ result <- list(
 cat(toJSON(result, auto_unbox = TRUE))
 flush.console()
 quit(save = "no", status = 0, runLast = FALSE)
+
