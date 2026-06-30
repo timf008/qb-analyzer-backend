@@ -4,15 +4,6 @@
 sink("/dev/null")      # silence all non-JSON output
 options(warn = -1)     # suppress warnings
 
-# ============================================================
-# CORS HEADERS (ignored by Node, but harmless)
-# ============================================================
-cat("Content-Type: application/json\n")
-cat("Access-Control-Allow-Origin: *\n")
-cat("Access-Control-Allow-Headers: *\n")
-cat("Access-Control-Allow-Methods: GET, POST, OPTIONS\n")
-cat("\n")  # REQUIRED blank line after headers
-
 
 args <- commandArgs(trailingOnly = TRUE)
 
