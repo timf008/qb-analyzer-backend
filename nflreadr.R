@@ -1,16 +1,16 @@
 # ============================================================
 # GLOBAL SILENCERS (must be VERY first)
 # ============================================================
-sink("/dev/null")      # silence all non-JSON output
-options(warn = -1)     # suppress warnings
-
+sink("/dev/null", type = "message")   # only silence messages, not stdout
+options(warn = -1)                    # suppress warnings
+suppressPackageStartupMessages({
+  library(nflreadr)
+  library(dplyr)
+  library(jsonlite)
+  library(stringr)
+})
 
 args <- commandArgs(trailingOnly = TRUE)
-
-library(nflreadr)
-library(dplyr)
-library(jsonlite)
-library(stringr)
 
 
 # ============================================================
