@@ -1,8 +1,8 @@
 # ============================================================
 # GLOBAL SILENCERS (must be VERY first)
 # ============================================================
-sink("/dev/null", type = "message")   # only silence messages, not stdout
 options(warn = -1)                    # suppress warnings
+
 suppressPackageStartupMessages({
   library(nflreadr)
   library(dplyr)
@@ -11,7 +11,6 @@ suppressPackageStartupMessages({
 })
 
 args <- commandArgs(trailingOnly = TRUE)
-
 
 # ============================================================
 # GLOBAL SAFETY OPTIONS
