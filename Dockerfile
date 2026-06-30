@@ -20,9 +20,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 RUN R -e "install.packages(c('nflreadr','dplyr','tidyr','jsonlite'), repos='https://cloud.r-project.org')"
 
 # ============================================================
-# Preload PBP cache to avoid huge downloads at runtime
+# Preload ALL seasons needed for Trend / Compare / Rank
 # ============================================================
-RUN R -e "pbp <- nflreadr::load_pbp(2025); saveRDS(pbp, 'pbp_cache_2025.rds')"
+RUN R -e "for (s in c(2020,2021,2022,2023,2024,2025)) { \
+    pbp <- nflreadr::load_pbp(s); \
+    saveRDS(pbp, paste0('pbp_cache_', s, '.rds')); \
+}"
 
 # ============================================================
 # Node setup
