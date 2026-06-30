@@ -172,7 +172,7 @@ if (is.na(epa) || is.nan(epa)) epa <- 0
 
 comp_pct <- ifelse(attempts > 0, completions / attempts * 100, 0)
 td_pct   <- ifelse(attempts > 0, td / attempts * 100, 0)
-int_pct  <- ifelse(attemptempts > 0, ints / attempts * 100, 0)
+int_pct  <- ifelse(attempts > 0, ints / attempts * 100, 0)
 sack_pct <- ifelse(attempts + sacks > 0, sacks / (attempts + sacks) * 100, 0)
 
 # SAFE SCORING
