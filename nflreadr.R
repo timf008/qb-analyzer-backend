@@ -201,7 +201,7 @@ qb_tier <- dplyr::case_when(
   qb_score >= 7.0 ~ "Good",
   qb_score >= 5.5 ~ "Fair",
   qb_score >= 4.0 ~ "Average",
-  TRUE            ~ "Poor"
+  TRUE            ~ "Below Average"
 )
 
 result <- list(
