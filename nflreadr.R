@@ -180,14 +180,14 @@ scale_score <- function(x, min_val, max_val) {
   return(score)
 }
 
-# TUNED 5-METRIC SCORES
-comp_score <- scale_score(comp_pct, 50, 72)
-td_score   <- scale_score(td_pct, 1.5, 8.5)
-int_score  <- scale_score(10 - int_pct, 0.5, 4.5)
-sack_score <- scale_score(10 - sack_pct, 3, 11)
-epa_score  <- scale_score(epa, -0.30, 0.45)
+# 5-METRIC SCORES
+comp_score <- scale_score(comp_pct, 55, 70)
+td_score   <- scale_score(td_pct, 2.5, 7.0)
+int_score  <- scale_score(10 - int_pct, 0, 10)
+sack_score <- scale_score(10 - sack_pct, 0, 10)
+epa_score  <- scale_score(epa, -0.1, 0.3)
 
-# WEIGHTED QB SCORE
+# 5-METRIC WEIGHTED QB SCORE
 qb_score <- (
   comp_score * 0.25 +
   td_score   * 0.25 +
@@ -203,7 +203,6 @@ qb_tier <- dplyr::case_when(
   qb_score >= 4.0 ~ "Average",
   TRUE            ~ "Below Average"
 )
-
 
 result <- list(
   qb_name = true_name,
